@@ -3,7 +3,14 @@ declare(strict_types=1);
 
 namespace NFT;
 
+use NFT\Controllers\Homepage;
+
 return [
+    [
+        'GET',
+        '/',
+        [Homepage::class, 'show'],
+    ],
     [
         'GET',
         '/hello-world',
