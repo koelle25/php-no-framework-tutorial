@@ -3,15 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>NFT (No-Framework-Tutorial)</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<nav>
-  {% for item in menuItems %}
-  <a href="{{ item.href }}">{{ item.text }}</a><br>
-  {% endfor %}
-</nav>
-<hr>
-{% block content %}
-{% endblock %}
+<div id="layout">
+  <nav id="menu">
+    <div class="pure-menu">
+      <a href="/" class="pure-menu-heading pure-menu-link">NFT</a>
+      <ul class="pure-menu-list">
+        {% for item in menuItems %}
+        <li class="pure-menu-item">
+          <a href="{{ item.href }}" class="pure-menu-link">{{ item.text }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+  <main id="main">
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+</div>
 </body>
 </html>
