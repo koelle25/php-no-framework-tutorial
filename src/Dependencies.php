@@ -19,13 +19,17 @@ $injector->alias(\Http\Response::class, \Http\HttpResponse::class);
 $injector->share(\Http\HttpResponse::class);
 
 // Either Mustache OR Twig!
-$injector->alias(\NFT\Template\Renderer::class, \NFT\Template\MustacheRenderer::class);
+/*$injector->alias(\NFT\Template\Renderer::class, \NFT\Template\MustacheRenderer::class);
 $injector->define(\Mustache_Engine::class, [
     ':options' => [
         'loader' => new \Mustache_Loader_FilesystemLoader(dirname(__DIR__) . '/templates', [
             'extension' => '.html',
         ]),
     ],
+]);*/
+$injector->alias(\NFT\Template\Renderer::class, \NFT\Template\TwigRenderer::class);
+$injector->define(\Twig\Environment::class, [
+    ':loader' => new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates'),
 ]);
 
 return $injector;
