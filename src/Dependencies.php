@@ -3,17 +3,11 @@ declare(strict_types=1);
 
 namespace NFT;
 
-use Auryn\Injector;
-use Http\HttpRequest;
-use Http\HttpResponse;
-use Http\Request;
-use Http\Response;
+$injector = new \Auryn\Injector();
 
-$injector = new Injector();
-
-$injector->alias(Request::class, HttpRequest::class);
-$injector->share(HttpRequest::class);
-$injector->define(HttpRequest::class, [
+$injector->alias(\Http\Request::class, \Http\HttpRequest::class);
+$injector->share(\Http\HttpRequest::class);
+$injector->define(\Http\HttpRequest::class, [
     ':get' => $_GET,
     ':post' => $_POST,
     ':cookies' => $_COOKIE,
@@ -21,7 +15,17 @@ $injector->define(HttpRequest::class, [
     ':server' => $_SERVER,
 ]);
 
-$injector->alias(Response::class, HttpResponse::class);
-$injector->share(HttpResponse::class);
+$injector->alias(\Http\Response::class, \Http\HttpResponse::class);
+$injector->share(\Http\HttpResponse::class);
+
+// Either Mustache OR Twig!
+$injector->alias(\NFT\Template\Renderer::class, \NFT\Template\MustacheRenderer::class);
+$injector->define(\Mustache_Engine::class, [
+    ':options' => [
+        'loader' => new \Mustache_Loader_FilesystemLoader(dirname(__DIR__) . '/templates', [
+            'extension' => '.html',
+        ]),
+    ],
+]);
 
 return $injector;
