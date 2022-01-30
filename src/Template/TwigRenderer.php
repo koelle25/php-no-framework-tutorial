@@ -7,15 +7,12 @@ use Twig\Environment;
 
 class TwigRenderer implements Renderer
 {
-  private Environment $twig;
-
-  public function __construct(Environment $twig)
-  {
-    $this->twig = $twig;
-  }
+  public function __construct(
+      private Environment $renderer
+  ) {}
 
   public function render($template, $data = []): string
   {
-    return $this->twig->render("$template.html", $data);
+    return $this->renderer->render("$template.html", $data);
   }
 }

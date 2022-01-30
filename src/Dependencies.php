@@ -27,15 +27,21 @@ $injector->define(\Mustache_Engine::class, [
         ]),
     ],
 ]);*/
+$injector->delegate(\Twig\Environment::class, function () {
+  $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates');
+  return new \Twig\Environment($loader);
+});
 $injector->alias(\NFT\Template\Renderer::class, \NFT\Template\TwigRenderer::class);
-$injector->define(\Twig\Environment::class, [
-    ':loader' => new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates'),
-]);
+
+$injector->alias(\NFT\Template\FrontendRenderer::class, \NFT\Template\FrontendTwigRenderer::class);
 
 $injector->alias(\NFT\Page\PageReader::class, \NFT\Page\FilePageReader::class);
 $injector->share(\NFT\Page\FilePageReader::class);
 $injector->define(\NFT\Page\FilePageReader::class, [
     ':pageFolder' => __DIR__ . '/../pages',
 ]);
+
+$injector->alias(\NFT\Menu\MenuReader::class, \NFT\Menu\ArrayMenuReader::class);
+$injector->share(\NFT\Menu\ArrayMenuReader::class);
 
 return $injector;

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NFT (No-Framework-Tutorial)</title>
+</head>
+<body>
+<nav>
+  {% for item in menuItems %}
+  <a href="{{ item.href }}">{{ item.text }}</a><br>
+  {% endfor %}
+</nav>
+<hr>
+{% block content %}
+{% endblock %}
+</body>
+</html>

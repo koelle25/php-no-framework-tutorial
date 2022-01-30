@@ -6,20 +6,20 @@ namespace NFT\Controllers;
 use Http\Response;
 use NFT\Page\InvalidPageException;
 use NFT\Page\PageReader;
-use NFT\Template\Renderer;
+use NFT\Template\FrontendRenderer;
 
 class Page
 {
   /**
    * Constructor with property promotion.
    *
-   * @param Response   $response
-   * @param Renderer   $renderer
-   * @param PageReader $pageReader
+   * @param Response         $response
+   * @param FrontendRenderer $renderer
+   * @param PageReader       $pageReader
    */
   public function __construct(
       private Response $response,
-      private Renderer $renderer,
+      private FrontendRenderer $renderer,
       private PageReader $pageReader,
   ) {}
 
@@ -33,6 +33,7 @@ class Page
     } catch (InvalidPageException $e) {
       $this->response->setStatusCode(404);
       $this->response->setContent('404 - Page not found');
+
       return;
     }
 
