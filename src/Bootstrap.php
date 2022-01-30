@@ -9,6 +9,8 @@ error_reporting(E_ALL);
 
 $environment = 'development';
 
+$injector = include('Dependencies.php');
+
 /**
  * Register the error handler
  */
@@ -25,8 +27,8 @@ $whoops->register();
 /**
  * Setup the request/response objects
  */
-$request = new \Http\HttpRequest($_GET,$_POST, $_COOKIE, $_FILES, $_SERVER);
-$response = new \Http\HttpResponse();
+$request = $injector->make(\Http\HttpRequest::class);
+$response = $injector->make(\Http\HttpResponse::class);
 
 /**
  * Register the route dispatcher
@@ -53,7 +55,7 @@ switch ($routeInfo[0]) {
     $method = $routeInfo[1][1];
     $vars = $routeInfo[2];
 
-    $class = new $className($response);
+    $class = $injector->make($className);
     $class->$method($vars);
     break;
 }
