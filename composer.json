@@ -1,0 +1,24 @@
+{
+    "name": "koelle25/no-framework-tutorial",
+    "description": "Following along the tutorial at https://github.com/PatrickLouys/no-framework-tutorial",
+    "minimum-stability": "beta",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Köllmann",
+            "email": "mail@kevinkoellmann.de"
+        },
+        {
+            "name": "Patrick Louys",
+            "email": "patrick@louys.ch"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NFT\\": "src/"
+        }
+    }
+}
