@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=8.0",
         "filp/whoops": "~2.14",
         "mustache/mustache": "~2.14",
         "nikic/fast-route": "~1.3",

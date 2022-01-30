@@ -32,4 +32,10 @@ $injector->define(\Twig\Environment::class, [
     ':loader' => new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates'),
 ]);
 
+$injector->alias(\NFT\Page\PageReader::class, \NFT\Page\FilePageReader::class);
+$injector->share(\NFT\Page\FilePageReader::class);
+$injector->define(\NFT\Page\FilePageReader::class, [
+    ':pageFolder' => __DIR__ . '/../pages',
+]);
+
 return $injector;

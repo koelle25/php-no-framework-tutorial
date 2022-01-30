@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace NFT;
 
 use NFT\Controllers\Homepage;
+use NFT\Controllers\Page;
 
 return [
     [
@@ -25,4 +26,9 @@ return [
           echo 'This works too';
         },
     ],
+    [
+        'GET',
+        '/{slug}',
+        [Page::class, 'show'],
+    ]
 ];
