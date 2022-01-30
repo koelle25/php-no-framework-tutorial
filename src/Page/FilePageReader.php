@@ -5,12 +5,9 @@ namespace NFT\Page;
 
 class FilePageReader implements PageReader
 {
-  private string $pageFolder;
-
-  public function __construct(string $pageFolder)
-  {
-    $this->pageFolder = $pageFolder;
-  }
+  public function __construct(
+      private string $pageFolder
+  ) {}
 
   public function readBySlug(string $slug): string
   {

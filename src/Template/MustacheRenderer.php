@@ -7,12 +7,9 @@ use Mustache_Engine;
 
 class MustacheRenderer implements Renderer
 {
-  private Mustache_Engine $engine;
-
-  public function __construct(Mustache_Engine $engine)
-  {
-    $this->engine = $engine;
-  }
+  public function __construct(
+      private Mustache_Engine $engine
+  ) {}
 
   public function render($template, $data = []): string
   {

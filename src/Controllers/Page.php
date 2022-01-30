@@ -10,13 +10,6 @@ use NFT\Template\FrontendRenderer;
 
 class Page
 {
-  /**
-   * Constructor with property promotion.
-   *
-   * @param Response         $response
-   * @param FrontendRenderer $renderer
-   * @param PageReader       $pageReader
-   */
   public function __construct(
       private Response $response,
       private FrontendRenderer $renderer,
